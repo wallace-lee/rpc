@@ -171,8 +171,8 @@ int main(int argc, char* argv[])
     }
 
     //add timeout
-    std::cout << "Default timeout: " << client_config.timeout() << std::endl;
-    client_config.set_timeout(10000);
+    //std::cout << "Default timeout: " << client_config.timeout() << std::endl;
+    //client_config.set_timeout(10000);
 
     // websocket server certificate verification
     if (arg_nocertcheck)
@@ -426,6 +426,11 @@ int main(int argc, char* argv[])
     {
         // connect to web socket server; AMT activation server
         client.connect(utility::conversions::to_string_t(arg_url)).wait();
+    }
+    catch (const web::websockets::client::websocket_exception& e)
+    {
+       std::cerr << "websocket exception: " << e.what() << std::endl;
+       exit(1);
     }
     catch (...)
     {
