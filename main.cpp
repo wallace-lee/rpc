@@ -170,6 +170,10 @@ int main(int argc, char* argv[])
         client_config.set_proxy(web::web_proxy(utility::conversions::to_string_t(arg_proxy)));
     }
 
+    //add timeout
+    std::cout << "Default timeout: " << client_config.timeout() << std::endl;
+    client_config.set_timeout(10000);
+
     // websocket server certificate verification
     if (arg_nocertcheck)
     {
